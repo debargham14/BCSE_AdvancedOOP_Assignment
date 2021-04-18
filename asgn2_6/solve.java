@@ -88,7 +88,7 @@ abstract class Person {
         }
     }
     protected Address ad = new Address();
-    abstract public void getData (); //method to get the relevant personal details
+    abstract public int getData (); //method to get the relevant personal details
     public void modifyAddress () {//public api to modify the address of the individual
         int ch;
         Scanner sc = new Scanner (System.in);
@@ -119,7 +119,7 @@ class Student extends Person{
     protected static int last = 0;
 
     @Override
-    public void getData () { //method to get the relevant Student details
+    public int getData () { //method to get the relevant Student details
         Scanner sc = new Scanner(System.in);
         System.out.print ("Enter Name :- ");
         name = sc.nextLine();
@@ -129,7 +129,7 @@ class Student extends Person{
         if(phoneNumber.length() != 10) //phone number validity check
         {
             System.out.println ("Enter Valid Phone number and try again !");
-            return;
+            return 0;
         } 
 
         System.out.print ("Enter the email id :- ");
@@ -143,6 +143,7 @@ class Student extends Person{
         System.out.print ("Enter Course of study :- ");
         courseOfStudy = sc.nextLine();
         System.out.println ("Data entry successful ! Roll Number generated :- " + rollNumber);
+        return -1;
     }
 
     //method to show the relevant details of a student
@@ -171,7 +172,7 @@ class Faculty extends Person{
 
     //implementing the abstract function get data to get the faculty details
     @Override
-    public void getData () {
+    public int getData () {
         Scanner sc = new Scanner(System.in);
         System.out.print ("Enter Name :- ");
         name = sc.nextLine();
@@ -180,7 +181,7 @@ class Faculty extends Person{
         if(phoneNumber.length() != 10) //phone number validity check
         {
             System.out.println ("Enter Valid Phone number and try again !");
-            return;
+            return 0;
         } 
         System.out.print ("Enter the email id :- ");
         email = sc.nextLine();
@@ -195,6 +196,7 @@ class Faculty extends Person{
         System.out.println ("Enter field of specialisation :- ");
         specialisation = sc.nextLine();
         System.out.println ("Data entry successful ! emmployee Id generated :- " + employeeId);
+        return 1;
     }
     //method to display the faculty data
     @Override
@@ -216,22 +218,26 @@ class Faculty extends Person{
 //designing the class university
 class University {
     //maintaining a list of students and faculties
-    ArrayList <Student> studentlist = new ArrayList<Student> ();
-    ArrayList<Faculty> facultylist = new ArrayList<Faculty> ();
+    protected ArrayList <Student> studentlist = new ArrayList<Student> ();
+    protected ArrayList<Faculty> facultylist = new ArrayList<Faculty> ();
 
     //public method to test the functionalities
     public void addFaculty () { //method to add faculty
         Faculty ft = new Faculty();
-        ft.getData();
-        facultylist.add(ft);
-        System.out.println ("Faculty Added successfully !");
+        int res = ft.getData();
+        if(res == 1){
+            facultylist.add(ft);
+            System.out.println ("Faculty Added successfully !");
+        }
     }
 
     public void addStudent () { //method to add a student
         Student st = new Student ();
-        st.getData();
-        studentlist.add(st);
-        System.out.println ("Student Added successfully !");
+        int res = st.getData();
+        if(res == 1) {
+            studentlist.add(st);
+            System.out.println ("Student Added successfully !");
+        }
     }
 
     //method to display a faculty 
