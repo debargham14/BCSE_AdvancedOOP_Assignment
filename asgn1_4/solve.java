@@ -20,7 +20,7 @@ class QuoteGenerator {
     }
 }
 
-//class Test
+//class Test to test the above functionality
 class QuoteOfTheDay {
     public static void main (String args[]) {
         QuoteGenerator qg = new QuoteGenerator();

@@ -1,3 +1,4 @@
+//basic java code using multi threading to solve the classic producer consumer problem
 package java_assignment.asgn3_1;
 import java.util.*;
 import java.io.*;
