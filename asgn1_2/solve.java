@@ -1,9 +1,9 @@
 package java_assignment.asgn1_2;
 
 import java.util.*;
-
 //designing class Item 
 class Item {
+    //attributes essential to describe the object
     protected String icode;
     protected String name;
     protected int rate;
